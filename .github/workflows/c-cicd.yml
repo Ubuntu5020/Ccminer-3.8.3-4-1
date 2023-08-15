@@ -17,7 +17,7 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt full-upgrade -y
-        sudo apt-get install -y libcurl4-openssl-dev libssl-dev libjansson-dev automake make autotools-dev build-essential libmpfr-dev binutils linux-libc-dev linux-libc-dev-arm64-cross linux-libc-dev-armel-cross linux-libc-dev-armhf-cross libgmp3-dev libmpc-dev gcc-arm-linux-gnueabihf software-properties-common git nano cmake wget curl lsb-release wget software-properties-common gnupg
+        sudo apt-get install -y libcurl4-openssl-dev libssl-dev libjansson-dev libomp-dev automake make autotools-dev build-essential libmpfr-dev binutils linux-libc-dev linux-libc-dev-arm64-cross linux-libc-dev-armel-cross linux-libc-dev-armhf-cross libgmp3-dev libmpc-dev gcc-arm-linux-gnueabihf software-properties-common git nano cmake wget curl lsb-release wget software-properties-common gnupg
         sudo add-apt-repository ppa:ubuntu-toolchain-r/ppa -y
         sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
         sudo apt-get update

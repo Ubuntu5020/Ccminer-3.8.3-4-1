@@ -14,21 +14,30 @@ if [[ "$arch" == "aarch64" ]]; then
             cpu_flags="-march=armv8-a+crypto -mfpu=crypto-neon-fp-armv8 -mfloat-abi=hard -mtune=cortex-a53"
             ;;
         "Cortex-A72")
-            cpu_flags="-march=armv8-a+crypto -mfpu=crypto-neon-fp-armv8 -mtune=cortex-a72,cortex-a72.cortex-a35,cortex-a72.cortex-a53"
+            cpu_flags="-march=armv8-a+crypto -mfpu=crypto-neon-fp-armv8 -mfloat-abi=hard -mtune=cortex-a72"
             ;;
         "Cortex-A73")
-            cpu_flags="-march=armv8.2-a+crypto -mfpu=crypto-neon-fp-armv8 -mfloat-abi=hard -mtune=cortex-a73,cortex-a73.cortex-a53"
+            cpu_flags="-march=armv8.2-a+crypto -mfpu=crypto-neon-fp-armv8 -mfloat-abi=hard -mtune=cortex-a73"
             ;;
         "Cortex-A75")
-            cpu_flags="-march=armv8.2-a+crypto -mfpu=crypto-neon-fp-armv8 -mfloat-abi=hard -mtune=cortex-a75,cortex-a75.cortex-a55"
+            cpu_flags="-march=armv8.2-a+crypto -mfpu=crypto-neon-fp-armv8 -mfloat-abi=hard -mtune=cortex-a75"
             ;;
         "Cortex-A76")
-            cpu_flags="-march=armv8.2-a+crypto -mfpu=crypto-neon-fp-armv8 -mfloat-abi=hard -mtune=cortex-a76,cortex-a76.cortex-a55"
+            cpu_flags="-march=armv8.2-a+crypto -mfpu=crypto-neon-fp-armv8 -mfloat-abi=hard -mtune=cortex-a76"
+            ;;
+        "Cortex-A77")
+            cpu_flags="-march=armv8.2-a+crypto -mfpu=crypto-neon-fp-armv8 -mfloat-abi=hard -mtune=cortex-a77"
+            ;;
+        "Cortex-A78")
+            cpu_flags="-march=armv8.2-a+crypto -mfpu=crypto-neon-fp-armv8 -mfloat-abi=hard -mtune=cortex-a78"
+            ;;
+        "Cortex-A78c")
+            cpu_flags="-march=armv8.2-a+crypto -mfpu=crypto-neon-fp-armv8 -mfloat-abi=hard -mtune=cortex-a78c"
             ;;
         *)
             # Default to ARMv8-A architecture (Cortex-A53) if unknown
             echo "Unknown or unsupported model: $model_name. Defaulting to ARMv8-A."
-            cpu_flags="-march=armv8-a+crypto -mfpu=crypto-neon-fp-armv8 -mfloat-abi=hard -mtune=cortex-a53,cortex-a72,cortex-a73,cortex-a75,arm8,arm9,cortex-a72.cortex-a53,cortex-a72.cortex-a35,cortex-a73.cortex-a53,cortex-a75.cortex-a55,cortex-a76.cortex-a55"
+            cpu_flags="-march=armv8-a+crypto -mfpu=crypto-neon-fp-armv8 -mfloat-abi=hard -mtune=cortex-a53"
             ;;
     esac
 else

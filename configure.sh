@@ -55,7 +55,7 @@ all_flags="$common_flags $cpu_flags $vectorization_flags"
 
 
 # Configure and build
-./configure --target=aarch64 --host=x86_64 --build=x86_64 CXXFLAGS="-Wl,-hugetlbfs-align -funroll-loops -finline-functions $all_flags" \
+./configure --target=aarch64 CXXFLAGS="-Wl,-hugetlbfs-align -funroll-loops -finline-functions $all_flags" \
             CFLAGS="-Wl,-hugetlbfs-align -finline-functions $all_flags" \
             CXX=clang++ CC=clang LDFLAGS="-v -flto -Wl,-hugetlbfs-align"
 

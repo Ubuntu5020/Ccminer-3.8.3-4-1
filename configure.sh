@@ -34,7 +34,7 @@ if [[ "$arch" == "aarch64" ]]; then
 else
     # Default to ARMv8-A architecture (Cortex-A53) if unknown
     echo "Unknown or unsupported architecture: $arch. Defaulting to ARMv8-A."
-    cpu_flags="-march=armv8-a+crypto -mfpu=crypto-neon-fp-armv8 -mfloat-abi=hard -mtune=cortex-a53,cortex-a72,cortex-a73,cortex-a75,arm8,arm9,cortex-a72.cortex-a53,cortex-a72.cortex-a35,cortex-a73.cortex-a53,cortex-a75.cortex-a55,cortex-a76.cortex-a55"
+    cpu_flags="-mtune=native"
 fi
 
 

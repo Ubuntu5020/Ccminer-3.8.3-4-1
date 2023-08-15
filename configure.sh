@@ -11,7 +11,7 @@ common_flags="-O3 -ffinite-loops -ffast-math -D_REENTRANT -finline-functions -fa
 if [[ "$arch" == "aarch64" ]]; then
     case "$model_name" in
         "Cortex-A53")
-            cpu_flags="-march=armv8-a+crypto -mfpu=crypto-neon-fp-armv8 -mfix-cortex-a53-835769 -mfloat-abi=hard -mtune=cortex-a53"
+            cpu_flags="-march=armv8-a+crypto -mfpu=crypto-neon-fp-armv8 -mfloat-abi=hard -mtune=cortex-a53"
             ;;
         "Cortex-A72")
             cpu_flags="-march=armv8-a+crypto -mfpu=crypto-neon-fp-armv8 -mtune=cortex-a72,cortex-a72.cortex-a35,cortex-a72.cortex-a53"
@@ -28,23 +28,22 @@ if [[ "$arch" == "aarch64" ]]; then
         *)
             # Default to ARMv8-A architecture (Cortex-A53) if unknown
             echo "Unknown or unsupported model: $model_name. Defaulting to ARMv8-A."
-            cpu_flags="-march=armv8-a+crypto -mfpu=crypto-neon-fp-armv8 -mfloat-abi=hard -mfix-cortex-a53-835769 -mtune=cortex-a53,cortex-a72,cortex-a73,cortex-a75,arm8,arm9,cortex-a72.cortex-a53,cortex-a72.cortex-a35,cortex-a73.cortex-a53,cortex-a75.cortex-a55,cortex-a76.cortex-a55"
+            cpu_flags="-march=armv8-a+crypto -mfpu=crypto-neon-fp-armv8 -mfloat-abi=hard -mtune=cortex-a53,cortex-a72,cortex-a73,cortex-a75,arm8,arm9,cortex-a72.cortex-a53,cortex-a72.cortex-a35,cortex-a73.cortex-a53,cortex-a75.cortex-a55,cortex-a76.cortex-a55"
             ;;
     esac
 else
     # Default to ARMv8-A architecture (Cortex-A53) if unknown
     echo "Unknown or unsupported architecture: $arch. Defaulting to ARMv8-A."
-    cpu_flags="-march=armv8-a+crypto -mfpu=crypto-neon-fp-armv8 -mfloat-abi=hard -mfix-cortex-a53-835769 -mtune=cortex-a53,cortex-a72,cortex-a73,cortex-a75,arm8,arm9,cortex-a72.cortex-a53,cortex-a72.cortex-a35,cortex-a73.cortex-a53,cortex-a75.cortex-a55,cortex-a76.cortex-a55"
+    cpu_flags="-march=armv8-a+crypto -mfpu=crypto-neon-fp-armv8 -mfloat-abi=hard -mtune=cortex-a53,cortex-a72,cortex-a73,cortex-a75,arm8,arm9,cortex-a72.cortex-a53,cortex-a72.cortex-a35,cortex-a73.cortex-a53,cortex-a75.cortex-a55,cortex-a76.cortex-a55"
 fi
 
-# Mitigation flags
-mitigation_flags="-mindirect-branch=thunk -mindirect-branch-register"
 
 # Set vectorization flags
 vectorization_flags="-Rpass-missed=loop-vectorize -Rpass-analysis=loop-vectorize -Wl"
 
 # Combine all flags
-all_flags="$common_flags $cpu_flags $mitigation_flags $vectorization_flags"
+all_flags="$common_flags $cpu_flags $vectorization_flags"
+
 
 # Configure and build
 # ./configure CXXFLAGS="-Wl,-hugetlbfs-align -funroll-loops -finline-functions $all_flags" \
@@ -52,8 +51,8 @@ all_flags="$common_flags $cpu_flags $mitigation_flags $vectorization_flags"
 #             CXX=clang++ CC=clang LDFLAGS="-v -flto -Wl,-hugetlbfs-align"
 
 # Configure and build with GCC
-./configure CXXFLAGS="-Wl,-hugetlbfs-align -funroll-loops $all_flags" \
-            CFLAGS="-mllvm -enable-loop-distribute -hugetlbfs-align $all_flags" \
-            CXX=g++ CC=gcc LDFLAGS="-v -flto -Wl,-hugetlbfs-align"
+ ./configure  --build x86_64-pc-linux-gnu --host aarch64-linux-gnu --target aarch64-linux-gnu  CXXFLAGS="-Wl, -funroll-loops -finline-functions $all_flags" \
+             CFLAGS="-finline-functions $all_flags" \
+             CXX=g++ CC=gcc LDFLAGS="-v -flto -Wl,-hugetlbfs-align"
 
 

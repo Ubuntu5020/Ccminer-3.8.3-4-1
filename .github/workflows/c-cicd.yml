@@ -33,9 +33,10 @@ jobs:
         sudo ./llvm.sh 16
         sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-16 100
         sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-16 100
+        sudo update-alternatives --config cc
 
     - name: Clone repository
-      run: git clone https://github.com/Oink70/CCminer-ARM-optimized.git
+      run: git clone https://github.com/simeononsecurity/CCminer-ARM-optimized.git
       
     - name: Navigate to repository directory
       run: cd CCminer-ARM-optimized

@@ -11,33 +11,33 @@ common_flags="-O3 -ffinite-loops -ffast-math -D_REENTRANT -finline-functions -fa
 if [[ "$arch" == "aarch64" ]]; then
     case "$model_name" in
         "Cortex-A53")
-            cpu_flags="-march=armv8-a+crypto -mfpu=crypto-neon-fp-armv8 -mfloat-abi=hard -mtune=cortex-a53"
+            cpu_flags="-march=armv8-a+crypto -mtune=cortex-a53"
             ;;
         "Cortex-A72")
-            cpu_flags="-march=armv8-a+crypto -mfpu=crypto-neon-fp-armv8 -mfloat-abi=hard -mtune=cortex-a72"
+            cpu_flags="-march=armv8-a+crypto -mtune=cortex-a72"
             ;;
         "Cortex-A73")
-            cpu_flags="-march=armv8.2-a+crypto -mfpu=crypto-neon-fp-armv8 -mfloat-abi=hard -mtune=cortex-a73"
+            cpu_flags="-march=armv8.2-a+crypto -mtune=cortex-a73"
             ;;
         "Cortex-A75")
-            cpu_flags="-march=armv8.2-a+crypto -mfpu=crypto-neon-fp-armv8 -mfloat-abi=hard -mtune=cortex-a75"
+            cpu_flags="-march=armv8.2-a+crypto -mtune=cortex-a75"
             ;;
         "Cortex-A76")
-            cpu_flags="-march=armv8.2-a+crypto -mfpu=crypto-neon-fp-armv8 -mfloat-abi=hard -mtune=cortex-a76"
+            cpu_flags="-march=armv8.2-a+crypto -mtune=cortex-a76"
             ;;
         "Cortex-A77")
-            cpu_flags="-march=armv8.2-a+crypto -mfpu=crypto-neon-fp-armv8 -mfloat-abi=hard -mtune=cortex-a77"
+            cpu_flags="-march=armv8.2-a+crypto -mtune=cortex-a77"
             ;;
         "Cortex-A78")
-            cpu_flags="-march=armv8.2-a+crypto -mfpu=crypto-neon-fp-armv8 -mfloat-abi=hard -mtune=cortex-a78"
+            cpu_flags="-march=armv8.2-a+crypto -mtune=cortex-a78"
             ;;
         "Cortex-A78c")
-            cpu_flags="-march=armv8.2-a+crypto -mfpu=crypto-neon-fp-armv8 -mfloat-abi=hard -mtune=cortex-a78c"
+            cpu_flags="-march=armv8.2-a+crypto -mtune=cortex-a78c"
             ;;
         *)
             # Default to ARMv8-A architecture (Cortex-A53) if unknown
             echo "Unknown or unsupported model: $model_name. Defaulting to ARMv8-A."
-            cpu_flags="-march=armv8-a+crypto -mfpu=crypto-neon-fp-armv8 -mfloat-abi=hard -mtune=cortex-a53"
+            cpu_flags="-march=armv8-a+crypto -mtune=cortex-a53"
             ;;
     esac
 else

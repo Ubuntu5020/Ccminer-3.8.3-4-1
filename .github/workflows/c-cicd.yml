@@ -47,4 +47,4 @@ jobs:
         chmod +x configure.sh
         chmod +x autogen.sh
     - name: Build CCminer with clang++
-      run: CXX=clang++ CC=clang ./build.sh
+      run: ./build.sh

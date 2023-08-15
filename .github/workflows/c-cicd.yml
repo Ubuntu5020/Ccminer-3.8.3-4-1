@@ -28,6 +28,8 @@ jobs:
         wget https://apt.llvm.org/llvm.sh
         chmod +x llvm.sh
         sudo ./llvm.sh 16
+        sudo ln -sf /usr/lib/llvm-16/bin/clang-16 /usr/bin/clang
+        sudo ln -sf /usr/lib/llvm-16/bin/clang++ /usr/bin/clang++
         sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-16 100
         sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-16 100
         sudo ./llvm.sh 18

@@ -47,6 +47,12 @@ vectorization_flags="-Rpass-missed=loop-vectorize -Rpass-analysis=loop-vectorize
 all_flags="$common_flags $cpu_flags $mitigation_flags $vectorization_flags"
 
 # Configure and build
+# ./configure CXXFLAGS="-Wl,-hugetlbfs-align -funroll-loops -finline-functions $all_flags" \
+#             CFLAGS="-Wl,-hugetlbfs-align -finline-functions $all_flags" \
+#             CXX=clang++ CC=clang LDFLAGS="-v -flto -Wl,-hugetlbfs-align"
+
+# Configure and build with GCC
 ./configure CXXFLAGS="-Wl,-hugetlbfs-align -funroll-loops -finline-functions $all_flags" \
             CFLAGS="-Wl,-hugetlbfs-align -finline-functions $all_flags" \
-            CXX=clang++ CC=clang LDFLAGS="-v -flto -Wl,-hugetlbfs-align"
+            CXX=g++ CC=gcc LDFLAGS="-v -flto -Wl,-hugetlbfs-align"
+

@@ -28,11 +28,11 @@ jobs:
         wget https://apt.llvm.org/llvm.sh
         chmod +x llvm.sh
         sudo ./llvm.sh 16
-        sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-16 90
-        sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-16 90
+        sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-16 100
+        sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-16 100
         sudo ./llvm.sh 18
-        sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-18 100
-        sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-18 100
+        sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-18 80
+        sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-18 80
         sudo update-alternatives --config cc
 
     - name: Clone repository

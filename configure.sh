@@ -53,8 +53,7 @@ all_flags="$common_flags $cpu_flags $mitigation_flags $vectorization_flags"
 
 # Configure and build with GCC
 ./configure CXXFLAGS="-Wl,-hugetlbfs-align -funroll-loops $all_flags" \
-            CFLAGS="-mllvm -enable-loop-distribute -hugetlbfs-align $all_flags" \
-            CXX=g++ CC=gcc LDFLAGS="-v -flto -Wl,-hugetlbfs-align"
-
+            CFLAGS="-mllvm -enable-loop-distribute -hugetlbfs-align $all_flags" \
+            CXX=g++ CC=gcc LDFLAGS="-v -flto -Wl,-hugetlbfs-align"
 
 

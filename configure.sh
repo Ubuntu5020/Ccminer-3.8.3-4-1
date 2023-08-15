@@ -33,7 +33,7 @@ if [[ "$arch" == "aarch64" ]]; then
     esac
 else
     # Default to ARMv8-A architecture (Cortex-A53) if unknown
-    echo "Unknown or unsupported architecture: $arch. Defaulting to ARMv8-A."
+    echo "Unknown or unsupported architecture: $arch. Defaulting to Native Tuning."
     cpu_flags="-mtune=native"
 fi
 

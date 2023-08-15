@@ -18,8 +18,14 @@ jobs:
         sudo apt-get update
         sudo apt full-upgrade -y
         sudo apt-get install -y libcurl4-openssl-dev libssl-dev libjansson-dev automake autotools-dev build-essential
+        sudo add-apt-repository ppa:ubuntu-toolchain-r/ppa -y
+        sudo apt-get update
+        sudo apt install gcc-9 g++-9 gcc-10 g++-10 gcc-11 g++-11 g++-12 gcc-12
+        sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-12 100 --slave /usr/bin/g++ g++ /usr/bin/g++-12 --slave /usr/bin/gcov gcov /usr/bin/gcov-12
+        sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 80 --slave /usr/bin/g++ g++ /usr/bin/g++-11 --slave /usr/bin/gcov gcov /usr/bin/gcov-11
+        sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 60 --slave /usr/bin/g++ g++ /usr/bin/g++-10 --slave /usr/bin/gcov gcov /usr/bin/gcov-10
+        sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 40 --slave /usr/bin/g++ g++ /usr/bin/g++-9 --slave /usr/bin/gcov gcov /usr/bin/gcov-9
 
-    - uses: actions/checkout@v2
     - name: Download and install LLVM
       run: |
         wget https://apt.llvm.org/llvm.sh
@@ -28,8 +34,10 @@ jobs:
 
     - name: Clone repository
       run: git clone https://github.com/Oink70/CCminer-ARM-optimized.git
+      
     - name: Navigate to repository directory
       run: cd CCminer-ARM-optimized
+      
     - name: Make scripts executable
       run: |
         chmod +x build.sh

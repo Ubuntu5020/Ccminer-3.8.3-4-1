@@ -22,6 +22,7 @@ mv $HOME/opt/openssl-1.1.1o/libcrypto.so.1.1 $HOME/opt/lib/
 mv $HOME/opt/openssl-1.1.1o/libssl.so.1.1 $HOME/opt/lib/
 export LD_LIBRARY_PATH=$HOME/opt/lib:$LD_LIBRARY_PATH
 echo 'export LD_LIBRARY_PATH=$HOME/opt/lib:$LD_LIBRARY_PATH' >> ~/.bashrc
+export PATH=$PATH:/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin
 
 git clone https://github.com/simeononsecurity/CCminer-ARM-optimized.git
 cd CCminer-ARM-optimized

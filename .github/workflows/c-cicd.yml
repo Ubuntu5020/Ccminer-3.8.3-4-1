@@ -16,7 +16,10 @@ jobs:
     - name: Update system and install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install libcurl4-openssl-dev libssl-dev libjansson-dev automake autotools-dev build-essential -y
+        sudo apt full-upgrade -y
+        sudo apt-get install -y libcurl4-openssl-dev libssl-dev libjansson-dev automake autotools-dev build-essential
+        sudo apt-get install -y gcc-5 g++-5
+        sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 1
 
     - uses: actions/checkout@v2
     - name: Download and install LLVM

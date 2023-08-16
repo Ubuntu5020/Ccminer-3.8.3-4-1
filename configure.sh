@@ -10,7 +10,7 @@ common_flags="-O3 -ffinite-loops -ffast-math -D_REENTRANT -finline-functions -fa
 # Set architecture-specific flags
 if [[ "$arch" == "aarch64" ]]; then
     if [[ "$model_name" == *"Cortex-A53"* ]]; then
-        cpu_flags="-march=armv8-a+crypto -mtune=cortex-a53"
+        cpu_flags="-march=armv8-a+crypto -mtune=cortex-a53 -mfix-cortex-a53-835769" 
     elif [[ "$model_name" == *"Cortex-A55"* ]]; then
         cpu_flags="-march=armv8-a+crypto -mtune=cortex-a55"
     elif [[ "$model_name" == *"Cortex-A57"* ]]; then

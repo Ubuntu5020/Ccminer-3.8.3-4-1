@@ -1,4 +1,4 @@
-# ccminer for ARMv8 CPUS and Big-little configurations
+# ccminer for ARMv8 CPUS
 
 Based on https://github.com/monkins1010/ccminer/tree/ARM
 

@@ -21,7 +21,7 @@ mkdir $HOME/opt/lib
 mv $HOME/opt/openssl-1.1.1o/libcrypto.so.1.1 $HOME/opt/lib/
 mv $HOME/opt/openssl-1.1.1o/libssl.so.1.1 $HOME/opt/lib/
 echo 'export LD_LIBRARY_PATH=$HOME/opt/lib:$LD_LIBRARY_PATH' >> ~/.bashrc
-cd /home/orangepi
+cd ~
 
 git clone https://github.com/simeononsecurity/CCminer-ARM-optimized.git
 cd CCminer-ARM-optimized

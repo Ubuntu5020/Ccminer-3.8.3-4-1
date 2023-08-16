@@ -9,49 +9,36 @@ common_flags="-O3 -ffinite-loops -ffast-math -D_REENTRANT -finline-functions -fa
 
 # Set architecture-specific flags
 if [[ "$arch" == "aarch64" ]]; then
-    case "$model_name" in
-        "Cortex-A53")
-            cpu_flags="-march=armv8-a+crypto -mtune=cortex-a53"
-            ;;
-        "Cortex-A55")
-            cpu_flags="-march=armv8-a+crypto -mtune=cortex-a55"
-            ;;
-        "Cortex-A57")
-            cpu_flags="-march=armv8-a+crypto -mtune=cortex-a57"
-            ;;
-        "Cortex-A72")
-            cpu_flags="-march=armv8-a+crypto -mtune=cortex-a72"
-            ;;
-        "Cortex-A73")
-            cpu_flags="-march=armv8-a+crypto -mtune=cortex-a73"
-            ;;
-        "Cortex-A75")
-            cpu_flags="-march=armv8-a+crypto -mtune=cortex-a75"
-            ;;
-        "Cortex-A76")
-            cpu_flags="-march=armv8-a+crypto -mtune=cortex-a76"
-            ;;
-        "Cortex-A77")
-            cpu_flags="-march=armv8-a+crypto -mtune=cortex-a77"
-            ;;
-        "Cortex-A78")
-            cpu_flags="-march=armv8-a+crypto -mtune=cortex-a78"
-            ;;
-        "Cortex-A78c")
-            cpu_flags="-march=armv8-a+crypto -mtune=cortex-a78c"
-            ;;
-        *)
-            # Default to ARMv8-A architecture (Cortex-A53) if unknown
-            echo "Unknown or unsupported model: $model_name. Defaulting to ARMv8-A."
-            cpu_flags="-march=armv8-a+crypto -mtune=cortex-a53"
-            ;;
-    esac
+    if [[ "$model_name" == *"Cortex-A53"* ]]; then
+        cpu_flags="-march=armv8-a+crypto -mtune=cortex-a53"
+    elif [[ "$model_name" == *"Cortex-A55"* ]]; then
+        cpu_flags="-march=armv8-a+crypto -mtune=cortex-a55"
+    elif [[ "$model_name" == *"Cortex-A57"* ]]; then
+        cpu_flags="-march=armv8-a+crypto -mtune=cortex-a57"
+    elif [[ "$model_name" == *"Cortex-A72"* ]]; then
+        cpu_flags="-march=armv8-a+crypto -mtune=cortex-a72"
+    elif [[ "$model_name" == *"Cortex-A73"* ]]; then
+        cpu_flags="-march=armv8-a+crypto -mtune=cortex-a73"
+    elif [[ "$model_name" == *"Cortex-A75"* ]]; then
+        cpu_flags="-march=armv8-a+crypto -mtune=cortex-a75"
+    elif [[ "$model_name" == *"Cortex-A76"* ]]; then
+        cpu_flags="-march=armv8-a+crypto -mtune=cortex-a76"
+    elif [[ "$model_name" == *"Cortex-A77"* ]]; then
+        cpu_flags="-march=armv8-a+crypto -mtune=cortex-a77"
+    elif [[ "$model_name" == *"Cortex-A78c"* ]]; then
+        cpu_flags="-march=armv8-a+crypto -mtune=cortex-a78c"
+    elif [[ "$model_name" == *"Cortex-A78"* ]]; then
+        cpu_flags="-march=armv8-a+crypto -mtune=cortex-a78"
+    else
+        # Default to ARMv8-A architecture (Cortex-A53) if unknown
+        echo "Unknown or unsupported model: $model_name. Defaulting to ARMv8-A."
+        cpu_flags="-march=armv8-a+crypto -mtune=cortex-a53"
+    fi
 else
-    # Default to ARMv8-A architecture (Cortex-A53) if unknown
+    # Default to ARMv8-A architecture (Cortex-A53) if unknown architecture
     echo "Unknown or unsupported architecture: $arch. Defaulting to Native Tuning."
     cpu_flags="-mtune=native"
 fi
-
 
 # Set vectorization flags
 vectorization_flags="-Rpass-missed=loop-vectorize -Rpass-analysis=loop-vectorize -Wl"

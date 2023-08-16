@@ -5,7 +5,7 @@ arch=$(lscpu | awk '/Architecture:/ { print $2 }')
 model_name=$(lscpu | awk -F ': +' '/Model name:/ { print $2 }')
 
 # Common compiler flags
-common_flags="-O3 -ffinite-loops -ffast-math -D_REENTRANT -finline-functions -falign-functions=16 -fomit-frame-pointer -fpic -pthread -flto -fuse-ld=lld -fno-stack-protector -enable-loop-distribute"
+common_flags="-O3 -ffinite-loops -ffast-math -D_REENTRANT -finline-functions -falign-functions=16 -fomit-frame-pointer -fpic -pthread -flto -fuse-ld=lld -fno-stack-protector"
 
 # Set architecture-specific flags
 if [[ "$arch" == "aarch64" ]]; then

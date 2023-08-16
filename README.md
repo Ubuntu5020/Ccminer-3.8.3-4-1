@@ -18,8 +18,8 @@ tar -zxvf openssl-1.1.1o.tar.gz
 cd openssl-1.1.1o
 ./config && make && make test
 mkdir $HOME/opt/lib
-mv $HOME/opt/openssl-1.1.1o/libcrypto.so.1.1 $HOME/opt/lib/*
-mv $HOME/opt/openssl-1.1.1o/libssl.so.1.1 $HOME/opt/lib/*
+mv $HOME/opt/openssl-1.1.1o/libcrypto.so.1.1 $HOME/opt/lib/libcrypto.so.1.1
+mv $HOME/opt/openssl-1.1.1o/libssl.so.1.1 $HOME/opt/lib/libssl.so.1.1 
 echo 'export LD_LIBRARY_PATH=$HOME/opt/lib:$LD_LIBRARY_PATH' >> ~/.bashrc
 cd ~
 

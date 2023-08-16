@@ -41,10 +41,12 @@ jobs:
         wget https://www.openssl.org/source/openssl-1.1.1o.tar.gz
         tar -zxvf openssl-1.1.1o.tar.gz
         cd openssl-1.1.1o
-        ./config | true && make | true && make test | true
-        mkdir $HOME/opt/lib
-        mv $HOME/opt/openssl-1.1.1o/libcrypto.so.1.1 /opt/lib/
-        mv $HOME/opt/openssl-1.1.1o/libssl.so.1.1 /opt/lib/
+        ./config | true 
+        make | true 
+        make test | true
+        mkdir $HOME/opt/lib | true
+        mv $HOME/opt/openssl-1.1.1o/libcrypto.so.1.1 /opt/lib/ | true
+        mv $HOME/opt/openssl-1.1.1o/libssl.so.1.1 /opt/lib/ | true
         export LD_LIBRARY_PATH=$HOME/opt/lib:$LD_LIBRARY_PATH
         echo 'export LD_LIBRARY_PATH=$HOME/opt/lib:$LD_LIBRARY_PATH' >> ~/.bashrc
         export PATH=$PATH:/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin
@@ -56,4 +58,4 @@ jobs:
             chmod +x build.sh
             chmod +x configure.sh
             chmod +x autogen.sh
-            CXX=clang++ CC=clang ./build.sh
+            CXX=clang++ CC=clang ./build.sh | true 

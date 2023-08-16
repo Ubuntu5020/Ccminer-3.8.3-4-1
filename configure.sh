@@ -16,6 +16,9 @@ if [[ "$arch" == "aarch64" ]]; then
         "Cortex-A55")
             cpu_flags="-march=armv8-a+crypto -mtune=cortex-a55"
             ;;
+        "Cortex-A57")
+            cpu_flags="-march=armv8-a+crypto -mtune=cortex-a57"
+            ;;
         "Cortex-A72")
             cpu_flags="-march=armv8-a+crypto -mtune=cortex-a72"
             ;;

@@ -10,7 +10,19 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        model_name:
+          - "Cortex-A53"
+          - "Cortex-A55"
+          - "Cortex-A57"
+          - "Cortex-A72"
+          - "Cortex-A73"
+          - "Cortex-A75"
+          - "Cortex-A76"
+          - "Cortex-A77"
+          - "Cortex-A78c"
+          - "Cortex-A78"
     steps:
     - uses: actions/checkout@v2
     - name: Set up arm-runner-action
@@ -19,6 +31,8 @@ jobs:
         base_image: raspios_lite_arm64:latest
         cpu: cortex-a53
         image_additional_mb: 16384
+        copy_artifact_path: /ccminer/
+        copy_repository_path:  /ccminer/
         commands: |
           sudo mkdir /home/runner
           sudo apt-get update
@@ -51,3 +65,10 @@ jobs:
           chmod +x github-action.sh
           chmod +x autogen.sh
           CXX=clang++ CC=clang ./github-action.sh
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      if: github.ref == 'refs/heads/releng' || startsWith(github.ref, 'refs/tags/')
+      with:
+        name: "ccminer_$model_name.zip"
+        path: "ccminer_$model_name.zip"

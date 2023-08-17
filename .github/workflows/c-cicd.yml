@@ -18,8 +18,8 @@ jobs:
         base_image: raspios_lite_arm64:latest
         cpu: cortex-a53
         image_additional_mb: 16384
-        copy_artifact_path: /ccminer/
-        copy_repository_path:  /ccminer/
+        copy_artifact_path: /root1`/ccminer/
+        copy_repository_path:  ~/ccminer/
         commands: |
           sudo mkdir /home/runner
           sudo mkdir ~/ccminer/

@@ -20,7 +20,7 @@ jobs:
         cpu: cortex-a53
         commands: |
           sudo apt-get update
-          sudo apt install software-properties-common
+          sudo apt install -y software-properties-common
           sudo apt-get install libcurl4-openssl-dev libssl-dev libjansson-dev automake autotools-dev build-essential -y
           wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
           sudo add-apt-repository 'deb http://apt.llvm.org/jammy/ llvm-toolchain-jammy-16 main'

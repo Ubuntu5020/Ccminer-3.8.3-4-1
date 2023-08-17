@@ -21,7 +21,6 @@ jobs:
         copy_artifact_path: /root/ccminer/
         copy_repository_path:  ~/ccminer/
         commands: |
-          sudo mkdir ~/ccminer/
           sudo apt-get update
           sudo apt install -y software-properties-common
           sudo apt-get install libcurl4-openssl-dev libssl-dev libjansson-dev automake autotools-dev build-essential git make cmake curl wget whois -y

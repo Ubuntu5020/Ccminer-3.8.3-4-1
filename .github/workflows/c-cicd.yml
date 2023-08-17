@@ -22,6 +22,14 @@ jobs:
           sudo apt-get update
           sudo apt install -y software-properties-common
           sudo apt-get install libcurl4-openssl-dev libssl-dev libjansson-dev automake autotools-dev build-essential -y
+          wget https://apt.llvm.org/llvm.sh
+          chmod +x llvm.sh
+          sudo ./llvm.sh 16
+          sudo ln -sf /usr/lib/llvm-16/bin/clang-16 /usr/bin/clang
+          sudo ln -sf /usr/lib/llvm-16/bin/clang++ /usr/bin/clang++
+          sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-16 100
+          sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-16 100
+          sudo update-alternatives --config cc
           wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
           sudo add-apt-repository 'deb http://apt.llvm.org/jammy/ llvm-toolchain-jammy-16 main'
           sudo apt update

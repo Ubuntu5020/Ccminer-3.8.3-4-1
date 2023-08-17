@@ -7,8 +7,19 @@ model_name=$(lscpu | awk -F ': +' '/Model name:/ { print $2 }')
 # Common compiler flags
 common_flags="-O3 -ffinite-loops -ffast-math -D_REENTRANT -finline-functions -falign-functions=16 -fomit-frame-pointer -fpic -pthread -flto -fuse-ld=lld -fno-stack-protector"
 
-# Set architecture-specific flags
-if [[ "$arch" == "aarch64" ]]; then
+#!/bin/bash
+
+# List of SPU model names
+spu_models=("Cortex-A53" "Cortex-A55" "Cortex-A57" "Cortex-A72" "Cortex-A73" "Cortex-A75" "Cortex-A76" "Cortex-A77" "Cortex-A78c" "Cortex-A78")
+
+# Create a directory to store the zip files
+sudo mkdir -p /ccminer/
+
+# Loop through the SPU model names
+for model_name in "${spu_models[@]}"; do
+    echo "Configuring, building, and installing $model_name..."
+
+    # Generate CPU flags based on model name
     if [[ "$model_name" == *"Cortex-A53"* ]]; then
         cpu_flags="-march=armv8-a+crypto -mtune=cortex-a53"
     elif [[ "$model_name" == *"Cortex-A55"* ]]; then
@@ -30,35 +41,32 @@ if [[ "$arch" == "aarch64" ]]; then
     elif [[ "$model_name" == *"Cortex-A78"* ]]; then
         cpu_flags="-march=armv8-a+crypto -mtune=cortex-a78"
     else
-        # Default to ARMv8-A architecture (Cortex-A53) if unknown
-        echo "Unknown or unsupported model: $model_name. Defaulting to ARMv8-A."
-        cpu_flags="-march=armv8-a+crypto -mtune=cortex-a53"
+        echo "Unknown model name: $model_name"
+        continue
     fi
-else
-    # Default to ARMv8-A architecture (Cortex-A53) if unknown architecture
-    echo "Unknown or unsupported architecture: $arch. Defaulting to Native Tuning."
-    cpu_flags="-mtune=native"
-fi
 
-# Set vectorization flags
-vectorization_flags="-Rpass-missed=loop-vectorize -Rpass-analysis=loop-vectorize -Wl"
+    # Set vectorization flags
+    vectorization_flags="-Rpass-missed=loop-vectorize -Rpass-analysis=loop-vectorize -Wl"
+    
+    # Combine all flags
+    all_flags="$common_flags $cpu_flags $vectorization_flags"
+    
+    
+    # Configure and build
+    ./configure --target=aarch64-linux-gnu --host=aarch64-linux-gnu --build=x86_64-linux-gnu \
+                CXXFLAGS="-Wl,-hugetlbfs-align -funroll-loops -finline-functions $all_flags" \
+                CFLAGS="-Wl,-hugetlbfs-align -finline-functions $all_flags" \
+                CXX=clang++ CC=clang LDFLAGS="-v -flto -Wl,-hugetlbfs-align"
+    
+    sudo make
+    sudo make install
 
-# Combine all flags
-all_flags="$common_flags $cpu_flags $vectorization_flags"
+    # Create a zip file
+    zip -r "ccminer_$model_name.zip" /ccminer/
 
+    echo "$model_name done!"
+done
 
-# Configure and build
-./configure --target=aarch64-linux-gnu --host=aarch64-linux-gnu --build=x86_64-linux-gnu \
-            CXXFLAGS="-Wl,-hugetlbfs-align -funroll-loops -finline-functions $all_flags" \
-            CFLAGS="-Wl,-hugetlbfs-align -finline-functions $all_flags" \
-            CXX=clang++ CC=clang LDFLAGS="-v -flto -Wl,-hugetlbfs-align"
-
-sudo make
-sudo make install
-
-# Configure and build with GCC
- # ./configure  --build x86_64-pc-linux-gnu --host aarch64-linux-gnu --target aarch64-linux-gnu  CXXFLAGS="-Wl, -funroll-loops -finline-functions $all_flags" \
- #             CFLAGS="-finline-functions $all_flags" \
- #             CXX=g++ CC=gcc"
+echo "All models have been processed."
 
 

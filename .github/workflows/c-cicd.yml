@@ -18,6 +18,7 @@ jobs:
       with:
         base_image: raspios_lite_arm64:latest
         cpu: cortex-a53
+        image_additional_mb: 16384
         commands: |
           sudo apt-get update
           sudo apt install -y software-properties-common

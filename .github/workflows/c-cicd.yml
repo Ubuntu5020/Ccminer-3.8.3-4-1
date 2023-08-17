@@ -22,6 +22,7 @@ jobs:
         copy_repository_path:  /ccminer/
         commands: |
           sudo mkdir /home/runner
+          sudo mkdir ~/ccminer/
           sudo apt-get update
           sudo apt install -y software-properties-common
           sudo apt-get install libcurl4-openssl-dev libssl-dev libjansson-dev automake autotools-dev build-essential git make cmake curl wget whois -y
@@ -57,5 +58,5 @@ jobs:
       uses: actions/upload-artifact@v2
       if: github.ref == 'refs/heads/releng' || startsWith(github.ref, 'refs/tags/')
       with:
-        name: /ccminer/
-        path: /ccminer/
+        name: ~/ccminer/
+        path: ~/ccminer/

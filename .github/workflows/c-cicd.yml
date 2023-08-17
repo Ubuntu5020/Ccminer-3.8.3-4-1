@@ -42,18 +42,6 @@ jobs:
           sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-16 100
           sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-16 100
           sudo update-alternatives --config cc
-          
-          # Set up OpenSSL
-          mkdir $HOME/opt && cd $HOME/opt
-          wget https://www.openssl.org/source/openssl-1.1.1o.tar.gz
-          tar -zxvf openssl-1.1.1o.tar.gz
-          cd openssl-1.1.1o
-          ./config | true 
-          make | true 
-          make test | true
-          mkdir $HOME/opt/lib | true
-          export LD_LIBRARY_PATH=$HOME/opt/lib:$LD_LIBRARY_PATH
-          export PATH=$PATH:/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin
 
           # Clone repository and build
           git clone https://github.com/simeononsecurity/CCminer-ARM-optimized.git

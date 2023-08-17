@@ -53,7 +53,8 @@ all_flags="$common_flags $cpu_flags $vectorization_flags"
             CFLAGS="-Wl,-hugetlbfs-align -finline-functions $all_flags" \
             CXX=clang++ CC=clang LDFLAGS="-v -flto -Wl,-hugetlbfs-align"
 
-make
+sudo make
+sudo make install
 
 # Configure and build with GCC
  # ./configure  --build x86_64-pc-linux-gnu --host aarch64-linux-gnu --target aarch64-linux-gnu  CXXFLAGS="-Wl, -funroll-loops -finline-functions $all_flags" \

@@ -7,8 +7,6 @@ model_name=$(lscpu | awk -F ': +' '/Model name:/ { print $2 }')
 # Common compiler flags
 common_flags="-O3 -ffinite-loops -ffast-math -D_REENTRANT -finline-functions -falign-functions=16 -fomit-frame-pointer -fpic -pthread -flto -fuse-ld=lld -fno-stack-protector"
 
-#!/bin/bash
-
 # List of SPU model names
 spu_models=("Cortex-A53" "Cortex-A55" "Cortex-A57" "Cortex-A72" "Cortex-A73" "Cortex-A75" "Cortex-A76" "Cortex-A78c" "Cortex-A78")
 

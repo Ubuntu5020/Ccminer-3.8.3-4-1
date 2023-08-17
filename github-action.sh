@@ -10,10 +10,10 @@ common_flags="-O3 -ffinite-loops -ffast-math -D_REENTRANT -finline-functions -fa
 #!/bin/bash
 
 # List of SPU model names
-spu_models=("Cortex-A53" "Cortex-A55" "Cortex-A57" "Cortex-A72" "Cortex-A73" "Cortex-A75" "Cortex-A76" "Cortex-A78c" "Cortex-A78")
+spu_models=("Cortex-A53")
 
 # Create a directory to store the zip files
-sudo mkdir -p /ccminer/
+sudo mkdir -p ~/ccminer/
 
 # Loop through the SPU model names
 for model_name in "${spu_models[@]}"; do

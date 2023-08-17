@@ -23,7 +23,7 @@ jobs:
           sudo mkdir /home/runner
           sudo apt-get update
           sudo apt install -y software-properties-common
-          sudo apt-get install libcurl4-openssl-dev libssl-dev libjansson-dev automake autotools-dev build-essential -y
+          sudo apt-get install libcurl4-openssl-dev libssl-dev libjansson-dev automake autotools-dev build-essential git make cmake curl wget whois -y
           wget https://apt.llvm.org/llvm.sh
           chmod +x llvm.sh
           sudo ./llvm.sh 16

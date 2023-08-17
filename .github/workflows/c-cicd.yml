@@ -20,7 +20,6 @@ jobs:
         cpu: cortex-a53
         image_additional_mb: 16384
         commands: |
-          sudo mkdir /home
           sudo mkdir /home/runner
           sudo apt-get update
           sudo apt install -y software-properties-common

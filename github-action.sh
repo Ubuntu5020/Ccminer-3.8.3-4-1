@@ -13,7 +13,7 @@ common_flags="-O3 -ffinite-loops -ffast-math -D_REENTRANT -finline-functions -fa
 spu_models=("Cortex-A53")
 
 # Create a directory to store the zip files
-sudo mkdir -p ~/ccminer/
+sudo mkdir -p /root/ccminer/
 
 # Loop through the SPU model names
 for model_name in "${spu_models[@]}"; do
@@ -62,7 +62,7 @@ for model_name in "${spu_models[@]}"; do
     sudo make install
 
     # Create a zip file
-    zip -r "ccminer_$model_name.zip" ~/ccminer/
+    zip -r "ccminer_$model_name.zip" /root/ccminer/
 
     echo "$model_name done!"
 done

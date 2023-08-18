@@ -60,7 +60,8 @@ for model_name in "${spu_models[@]}"; do
     sudo make install
 
     # Create a zip file
-    zip -r "ccminer_$model_name.zip" ../ccminer/
+    zip -r "ccminer_$model_name.zip" ./
+    mv "ccminer_$model_name.zip" ../ccminer/
 
     echo "$model_name done!"
 done

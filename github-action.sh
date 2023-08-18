@@ -8,7 +8,8 @@ model_name=$(lscpu | awk -F ': +' '/Model name:/ { print $2 }')
 common_flags="-O3 -ffinite-loops -ffast-math -D_REENTRANT -finline-functions -falign-functions=16 -fomit-frame-pointer -fpic -pthread -flto -fuse-ld=lld -fno-stack-protector"
 
 # List of SPU model names
-spu_models=("Cortex-A53" "Cortex-A55" "Cortex-A57" "Cortex-A72" "Cortex-A73" "Cortex-A75" "Cortex-A76" "Cortex-A78c" "Cortex-A78")
+#spu_models=("Cortex-A53" "Cortex-A55" "Cortex-A57" "Cortex-A72" "Cortex-A73" "Cortex-A75" "Cortex-A76" "Cortex-A78c" "Cortex-A78")
+spu_models=("Cortex-A53" "Cortex-A55")
 
 # Create a directory to store the zip files
 sudo mkdir -p ../ccminer/
@@ -61,8 +62,9 @@ for model_name in "${spu_models[@]}"; do
 
     # Create a zip file
     zip -r "ccminer_$model_name.zip" ./
+    ls ./
     mv "ccminer_$model_name.zip" ../ccminer/
-
+    ls ../ccminer/
     echo "$model_name done!"
 done
 

@@ -64,4 +64,4 @@ jobs:
       if: github.ref == 'refs/heads/releng' || startsWith(github.ref, 'refs/tags/')
       with:
         if-no-files-found: error
-        path: ~/ccminer/ccminer*.zip
+        path: ~/ccminerzip/ccminer*.zip

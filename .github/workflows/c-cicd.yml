@@ -25,7 +25,7 @@ jobs:
         base_image: raspios_lite_arm64:latest
         cpu: cortex-a53
         image_additional_mb: 16384
-        copy_artifact_path: ../ccminer/
+        copy_artifact_path: ccminer/
         copy_artifact_dest: ~/ccminer/
         commands: |
           sudo apt-get update

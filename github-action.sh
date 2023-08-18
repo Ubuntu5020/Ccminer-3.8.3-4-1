@@ -61,10 +61,10 @@ for model_name in "${spu_models[@]}"; do
     sudo make install
 
     # Create a zip file
-    zip -r "ccminer_$model_name.zip" ./
+    find . -type d -name "ccminer" -prune -o -print | zip -r "ccminer_$model_name.zip" -@
     ls ./
-    mv "ccminer_$model_name.zip" ../ccminer/
-    ls ../ccminer/
+    mv "ccminer_$model_name.zip" ./ccminer/
+    ls ./ccminer/
     pwd
     echo "$model_name done!"
 done

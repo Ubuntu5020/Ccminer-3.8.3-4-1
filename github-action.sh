@@ -65,6 +65,7 @@ for model_name in "${spu_models[@]}"; do
     ls ./
     mv "ccminer_$model_name.zip" ../ccminer/
     ls ../ccminer/
+    pwd
     echo "$model_name done!"
 done
 
